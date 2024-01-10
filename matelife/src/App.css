@@ -1,0 +1,67 @@
+#root {
+  height: 100vh;
+}
+body {
+  background-image: url("./images/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.content {
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Lacquer;
+}
+.board {
+  width: 80%;
+  height: 600px;
+}
+.menu_items {
+  width: 80%;
+  position: absolute;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 25px;
+}
+.matelife {
+  width: 50%;
+  margin-top: -75px;
+}
+.btn {
+  width: fit-content;
+  color: #fff;
+  font-size: 50px;
+  margin-top: 25px;
+  cursor: pointer;
+}
+.btn:hover {
+  text-shadow: 2px 3px #a5a5a5;
+}
+.underline-animation {
+  display: inline-block;
+  position: relative;
+  color: #fff;
+}
+
+.underline-animation::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.underline-animation:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
