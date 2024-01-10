@@ -65,3 +65,29 @@ body {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
+.mode_items {
+  width: 80%;
+  position: absolute;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 25px;
+}
+.select_mode {
+  color: white;
+  font-size: 65px;
+  margin-top: -120px;
+}
+.mode_box {
+  background-image: url("./images/frame.png");
+  background-size: 100px;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  flex-direction: column;
+}
