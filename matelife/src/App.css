@@ -40,14 +40,13 @@ body {
   cursor: pointer;
 }
 .btn:hover {
-  text-shadow: 2px 3px #a5a5a5;
+  text-shadow: 3px 3px 4px #a5a5a5;
 }
 .underline-animation {
   display: inline-block;
   position: relative;
   color: #fff;
 }
-
 .underline-animation::after {
   content: '';
   position: absolute;
@@ -59,6 +58,7 @@ body {
   background-color: #fff;
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
+  box-shadow: 2px 3px 4px #a5a5a5;
 }
 
 .underline-animation:hover::after {
@@ -72,22 +72,33 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   margin-left: 25px;
+  font-size: 20px;
 }
 .select_mode {
   color: white;
   font-size: 65px;
-  margin-top: -120px;
+  margin-top: -95px;
+  text-align: center;
+}
+.boxes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 0px 120px;
 }
 .mode_box {
   background-image: url("./images/frame.png");
-  background-size: 100px;
-  width: 100px;
-  height: 100px;
+  background-size: 150px;
+  width: 150px;
+  height: 150px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #fff;
   flex-direction: column;
+  cursor: pointer;
+}
+.mode_box:hover {
+  filter: drop-shadow(5px 5px 4px #a5a5a5);
 }
