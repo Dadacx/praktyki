@@ -5,12 +5,18 @@ import { Menu } from "./components/Menu"
 import { Mode } from "./components/Mode"
 import { Mode2 } from "./components/Mode2"
 import { Settings } from "./components/Settings"
+var React = require('react')
 
 function App() {
+  const [screen, setScreen] = React.useState("home");
   return (
     <div className="content">
         <img className="board" alt="board" src={board}></img>
-        <Mode2 />
+        { screen === "home" ?
+      <Menu onClick={() => setScreen('otherScreen')}/>
+      :  screen === "otherScreen" ?
+      <Mode/>
+      : null }
     </div>
   );
 }
