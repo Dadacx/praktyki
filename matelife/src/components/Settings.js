@@ -1,5 +1,4 @@
 import pl_flag from "../images/pl_flag.png"
-import { useState } from 'react';
 
 export const Settings = () => {
   return (
