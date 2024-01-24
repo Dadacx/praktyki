@@ -20,13 +20,15 @@ export const Game = (props) => {
   return (
     <div className="mode_items">
       <div className="selected_mode">poziom {lvl}</div>
-      {hearts==3 ? <img src={heart}></img> : null}
-      {hearts>=2 ? <img src={heart}></img> : null}
-      {hearts>=1 ? <img src={heart}></img> : null}
+      <div className='sercarazem'>
+      {hearts==3 ? <img src={heart} className='serca' alt='serca'></img> : null}
+      {hearts>=2 ? <img src={heart} className='serca' alt='serca'></img> : null}
+      {hearts>=1 ? <img src={heart} className='serca' alt='serca'></img> : null}
+      </div>
       <div className="game_content">
-        <div className="dzialanie">{props.numbers[lvl-1][0]}</div>
-        <input className="wynik" type="number" ref={inputRef}></input>
-        <div onClick={handleClick}><button onClick={props.next}>sprawdź</button></div>
+        <div className="dzialanie"  style={{ fontSize: 40 }}>{props.numbers[lvl-1][0]}</div>
+        <input className="wynik" type="number"  ref={inputRef}></input>
+        <div onClick={handleClick} className='btn'  style={{ fontSize: 42 }}><div onClick={props.next}>sprawdź</div></div>
       </div>
     </div>
   );
