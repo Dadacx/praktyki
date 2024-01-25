@@ -1,23 +1,22 @@
-import pl_flag from "../images/pl_flag.png"
-
-export const Settings = () => {
+export const Settings = (props) => {
   return (
     <div className="settings_items">
-      <div className="ustawienia">ustawienia</div>
+      <div className="back" onClick={props.back}>{props.lang.back}</div>
+      <div className="ustawienia">{props.lang.settings}</div>
       <div className="language settings_item">
-        <span>język</span>
-        <img className="flag settings_shadow" alt="flaga" src={pl_flag}></img>
+        <span>{props.lang.language}</span>
+        <img onClick={props.setLang} className="flag settings_shadow" alt="flaga" src={require(`../images/${props.lang.lang}.png`)}></img>
       </div>
-      <div className="font settings_item">
-        <span>czcionka</span>
+      {/*<div className="font settings_item">
+        <span>{props.lang.font}</span>
         <div className="font_box settings_shadow">
           <span>średnia</span>
         </div>
-      </div>
+  </div>*/}
       <div className="sound settings_item">
-        <span>dźwięk</span>
+        <span>{props.lang.music}</span>
         <label class="toggler-wrapper settings_shadow">
-          <input type="checkbox" ></input>
+          <input type="checkbox" onClick={props.toggleSound}></input>
           <div class="toggler-slider">
             <div class="toggler-knob"></div>
           </div>

@@ -6,6 +6,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  user-select: none;
 }
 .content {
   height: inherit;
@@ -236,13 +237,88 @@ body {
   margin-right: auto;
 }
 .game_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: white;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+  margin-top: 55px;
 }
 .sercarazem {
   margin-left: auto;
   margin-right: auto;
 }
-
+#gameover {
+  font-size: 90px;
+}
+.try_again {
+  display: none;
+  width: 100%;
+  text-align: center;
+  margin-top: 55px;
+}
+.win {
+  display: none;
+  text-align: center;
+  color: #fff;
+}
+.congratulations {
+  font-size: 65px;
+  margin-bottom: 5px;
+  margin-top: -80px;
+}
+.finished {
+  margin-top: -65px;
+  font-size: 30px;
+  margin-bottom: 50px;
+}
+.minionki {
+  margin-bottom: 25px;
+}
+.play_again {
+  margin-left: 80px;
+  font-size: 25px;
+  cursor: pointer;
+}
+.back_to_mode {
+  font-size: 30px;
+  cursor: pointer;
+}
+.back {
+  position: absolute;
+  top: 62px;
+  left: 14%;
+  font-size: 25px;
+  cursor: pointer;
+  color: #fff;
+}
+.back:hover {
+  text-shadow: 3px 3px 4px #a5a5a5;
+}
+.dzialanie {
+  display: inline;
+  font-size: 40px;
+}
+.wynik {
+  background-color: unset;
+  border: 0;
+  border-bottom: 3px white solid;
+  height: 41px;
+  width: 70px;
+  outline: 0;
+  color: #fff;
+  padding: 0;
+  font-size: 40px;
+  font-family: 'Lacquer';
+  text-align: center;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.dzialanie_box {
+  display: flex;
+}

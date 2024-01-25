@@ -1,20 +1,21 @@
 export const Mode = (props) => {
   return (
     <div className="mode_items">
-      <div className="select_mode">wybierz tryb</div>
+      <div className="back" onClick={props.back}>{props.lang.back}</div>
+      <div className="select_mode">{props.lang.select_mode}</div>
       <div className="boxes">
-        <ModeBox text1="dodawanie" text2="odejmowanie" przedzial="1-25" margin="150px" rotate="rotate(6deg)" mode2={props.mode2} />
-        <ModeBox text1="mnożenie" text2="dzielenie" przedzial="1-25" margin="47px" rotate="rotate(-4deg)" mode2={props.mode2}/>
-        <ModeBox text1="dodawanie" text2="odejmowanie" przedzial="1-100" margin="125px" rotate="rotate(6deg)" mode2={props.mode2}/>
-        <ModeBox text1="mnożenie" text2="dzielenie" przedzial="1-100" margin="7px" rotate="rotate(-4deg)" mode2={props.mode2}/>
+        <ModeBox text1={props.lang.addition} text2={props.lang.subtraction} przedzial="1-25" margin="150px" rotate="rotate(6deg)" mode2={props.mode2} />
+        <ModeBox text1={props.lang.multiplication} text2={props.lang.divide} przedzial="1-25" margin="47px" rotate="rotate(-4deg)" mode2={props.mode2}/>
+        <ModeBox text1={props.lang.addition} text2={props.lang.subtraction} przedzial="1-100" margin="125px" rotate="rotate(6deg)" mode2={props.mode2}/>
+        <ModeBox text1={props.lang.multiplication} text2={props.lang.divide} przedzial="1-100" margin="7px" rotate="rotate(-4deg)" mode2={props.mode2}/>
       </div>
     </div>
   );
 }
 export const ModeBox = (props) => {
   return (
-    <div onClick={() => mode_type(props.text1,props.text2,props.przedzial)} className="mode_box" style={{ marginTop: props.margin, transform: props.rotate }}>
-      <div onClick={props.mode2}>
+    <div onClick={() => mode_type(props.text1,props.text2,props.przedzial)} style={{ marginTop: props.margin, transform: props.rotate }}>
+      <div onClick={props.mode2} className="mode_box">
       <div>{props.text1}</div>
       <div>{props.text2}</div>
       <div>{props.przedzial}</div>
