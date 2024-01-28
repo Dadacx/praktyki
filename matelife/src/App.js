@@ -1,4 +1,3 @@
-import board from "./images/board.png"
 import './App.css';
 import './font/font.css';
 import { Menu } from "./components/Menu"
@@ -6,6 +5,7 @@ import { Mode, mode } from "./components/Mode"
 import { Mode2, mode2 } from "./components/Mode2"
 import { Settings } from "./components/Settings"
 import { Game } from "./components/Game"
+import board from "./images/board.png"
 import levels from "./levels/levels.json"
 import langs from "./languages/lang.json"
 import sound from "./music.mp3"
@@ -33,15 +33,17 @@ function toggleSound(event) {
     document.querySelector("audio").pause()
   }
 }
-var lang_index = 0
+console.log(localStorage.getItem('lang'))
+var lang_index = localStorage.getItem('lang') != null ? JSON.parse(localStorage.getItem('lang')).lang_index : 0
 function App() {
   const [screen, setScreen] = React.useState("menu");
-  const [lang, setLang] = React.useState("pl-pl");
+  const [lang, setLang] = React.useState(localStorage.getItem('lang') != null ? JSON.parse(localStorage.getItem('lang')).lang : "pl-pl");
   function changeLang() {
     const langs = ["pl-pl","en-gb"]
     lang_index++
     if(lang_index>=langs.length) lang_index = 0
     setLang(langs[lang_index])
+    localStorage.setItem('lang', JSON.stringify({lang:langs[lang_index],lang_index:lang_index}))
   }
   var component
   switch (screen) {

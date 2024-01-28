@@ -1,7 +1,7 @@
 export const Mode2 = (props) => {
   return (
     <div className="mode_items">
-      <div className="back" onClick={props.back}>{props.lang.back}</div>
+      <div className="back shadow" onClick={props.back}>{props.lang.back}</div>
       <div className="selected_mode">{props.text1} {props.lang.and} {props.text2}<br></br>{props.przedzial}</div>
       <div className="boxes">
         <ModeBox2 text1={props.lang.survival} text2="" przedzial="" margin="85px" rotate="rotate(6deg)" desc={props.lang.survival_desc} game={props.game}/>

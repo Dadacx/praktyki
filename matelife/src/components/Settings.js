@@ -1,7 +1,7 @@
 export const Settings = (props) => {
   return (
     <div className="settings_items">
-      <div className="back" onClick={props.back}>{props.lang.back}</div>
+      <div className="back shadow" onClick={props.back}>{props.lang.back}</div>
       <div className="ustawienia">{props.lang.settings}</div>
       <div className="language settings_item">
         <span>{props.lang.language}</span>

@@ -1,7 +1,7 @@
 export const Mode = (props) => {
   return (
     <div className="mode_items">
-      <div className="back" onClick={props.back}>{props.lang.back}</div>
+      <div className="back shadow" onClick={props.back}>{props.lang.back}</div>
       <div className="select_mode">{props.lang.select_mode}</div>
       <div className="boxes">
         <ModeBox text1={props.lang.addition} text2={props.lang.subtraction} przedzial="1-25" margin="150px" rotate="rotate(6deg)" mode2={props.mode2} />

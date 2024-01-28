@@ -294,7 +294,7 @@ body {
   cursor: pointer;
   color: #fff;
 }
-.back:hover {
+.shadow:hover {
   text-shadow: 3px 3px 4px #a5a5a5;
 }
 .dzialanie {
@@ -321,4 +321,15 @@ input::-webkit-inner-spin-button {
 }
 .dzialanie_box {
   display: flex;
+}
+.hint {
+  visibility: hidden;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.score {
+  font-size: 30px;
+  color: #fff;
+  text-align: center;
+  margin-top: 15px;
 }
