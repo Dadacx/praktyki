@@ -2,6 +2,8 @@ import { useRef, useState } from 'react';
 import heart from "../images/heart.png"
 import minionki from "../images/minionki.gif"
 
+var cancel = null
+const stats = JSON.parse(localStorage.getItem('stats'))
 export const Game = (props) => {
   const inputRef = useRef(null);
 
@@ -9,6 +11,24 @@ export const Game = (props) => {
   const [hearts, setHearts] = useState(3)
   const [score, setScore] = useState(0)
   const [tab_index, setIndex] = useState(1)
+  if(stats.time == null) stats.time = 0
+  function incrementSeconds() {
+    stats.time += 1
+    console.log(stats.time)
+  }
+  if(cancel == null) {
+    cancel = setInterval(incrementSeconds, 1000);
+  }
+  function stats_correct_answer() {
+    stats.correct_answers = stats.correct_answers != null ? stats.correct_answers + 1 : 1
+    console.log(stats)
+    localStorage.setItem('stats', JSON.stringify(stats))
+  }
+  function stats_incorrect_answer() {
+    stats.incorrect_answers = stats.incorrect_answers != null ? stats.incorrect_answers + 1 : 1
+    console.log(stats)
+    localStorage.setItem('stats', JSON.stringify(stats))
+  }
   function survival() {
     if(inputRef.current.value == props.numbers[tab_index-1][1]) {
     if(tab_index>=props.numbers.length) {
@@ -16,14 +36,19 @@ export const Game = (props) => {
     } else {
       setIndex(tab_index+1)
       setLvl(lvl + 1)
+      stats_correct_answer()
     }
       document.querySelector("#hint").style.visibility = "hidden"
     } else if(inputRef.current.value != "") {
       setHearts(hearts - 1)
+      stats_incorrect_answer()
       //console.log(hearts)
       document.querySelector("#hint").innerHTML="Pokaż podpowiedź"
       document.querySelector("#hint").style.visibility = "visible"
       if(hearts==1) {
+        stats.games_lost = stats.games_lost != null ? stats.games_lost + 1 : 1
+        console.log(stats)
+        localStorage.setItem('stats', JSON.stringify(stats))
         document.querySelector("#lvl").style.display = "none"
         document.querySelector("#gameover").style.display = "block"
         document.querySelector("#game_content").style.display = "none"
@@ -39,20 +64,27 @@ export const Game = (props) => {
       setIndex(1)
       setScore(score + 1)
       setLvl(lvl + 1)
+      stats_correct_answer()
     } else {
       console.log(lvl)
       setLvl(lvl + 1)
       setIndex(tab_index+1)
       setScore(score + 1)
+      stats_correct_answer()
     }
       document.querySelector("#hint").style.visibility = "hidden"
     } else if(inputRef.current.value != "") {
       if(score > 0) setScore(score - 1)
+      stats_incorrect_answer()
       document.querySelector("#hint").innerHTML="Pokaż podpowiedź"
       document.querySelector("#hint").style.visibility = "visible"
     }
   }
   function again() {
+    cancel = setInterval(incrementSeconds, 1000);
+    stats.games_playes = stats.games_playes != null ? stats.games_playes + 1 : 1
+    console.log(stats)
+    localStorage.setItem('stats', JSON.stringify(stats))
     setLvl(1)
     setHearts(3)
     setIndex(1)
@@ -68,13 +100,22 @@ export const Game = (props) => {
     if(props.mode2[0]==props.lang.free_game) document.querySelector("#score").style.display = "block"
   }
   function congratulations() {
+    localStorage.setItem('stats', JSON.stringify(stats))
+    clearInterval(cancel)
+    cancel = null
+    console.log(stats)
+    localStorage.setItem('stats', JSON.stringify(stats))
+    stats.games_won = stats.games_won != null ? stats.games_won + 1 : 1
+    console.log(stats)
+    localStorage.setItem('stats', JSON.stringify(stats))
+    stats_correct_answer()
     document.querySelector("#lvl").style.display = "none"
     document.querySelector("#game_content").style.display = "none"
     document.querySelector("#hearts").style.display = "none"
     document.querySelector("#win").style.display = "block"
     if(props.mode2[0]==props.lang.free_game) document.querySelector("#score").style.display = "none"
   }
-  function handleClick() {
+  function handleClick(event) {
     if(props.mode2[0]==props.lang.survival) {
       survival()
     }
@@ -82,6 +123,7 @@ export const Game = (props) => {
       free_game()
     }
     inputRef.current.value = ""
+    if(event != undefined) event.preventDefault()
   }
   return (
     <div className="mode_items">
@@ -106,10 +148,12 @@ export const Game = (props) => {
         <div className='dzialanie_box'>
         <div className="dzialanie">{props.numbers[tab_index-1][0]}</div>
         <div className="dzialanie" style={{margin: "0px 14px"}}>=</div>
-        <input className="wynik" type="number" maxLength={3} ref={inputRef}></input>
+        <form onSubmit={(event) => handleClick(event)}>
+          <input className="wynik" type="number" ref={inputRef}></input>
+        </form>
         </div>
         <div className='hint shadow' id='hint' onClick={() => document.querySelector("#hint").innerHTML=`Poprawna odpowiedź to: ${props.numbers[tab_index-1][1]}`}>Pokaż podpowiedź</div>
-        <div onClick={handleClick} className='btn'  style={{ fontSize: 42, marginTop: "10px" }}>{props.lang.check}</div>
+        <div onClick={() => console.log(handleClick())} className='btn'  style={{ fontSize: 42, marginTop: "10px" }}>{props.lang.check}</div>
       </div>
     </div>
   );

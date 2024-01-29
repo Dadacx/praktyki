@@ -5,6 +5,7 @@ import { Mode, mode } from "./components/Mode"
 import { Mode2, mode2 } from "./components/Mode2"
 import { Settings } from "./components/Settings"
 import { Game } from "./components/Game"
+import { Stats } from "./components/Stats"
 import board from "./images/board.png"
 import levels from "./levels/levels.json"
 import langs from "./languages/lang.json"
@@ -33,9 +34,17 @@ function toggleSound(event) {
     document.querySelector("audio").pause()
   }
 }
-console.log(localStorage.getItem('lang'))
 var lang_index = localStorage.getItem('lang') != null ? JSON.parse(localStorage.getItem('lang')).lang_index : 0
 function App() {
+  //localStorage.clear("stats")
+  if(localStorage.getItem('stats') == null) {
+    var data = {
+      games_playes:0,
+      games_won:0,
+      games_lost:0
+    }
+    localStorage.setItem('stats', JSON.stringify({}))
+  }
   const [screen, setScreen] = React.useState("menu");
   const [lang, setLang] = React.useState(localStorage.getItem('lang') != null ? JSON.parse(localStorage.getItem('lang')).lang : "pl-pl");
   function changeLang() {
@@ -48,7 +57,7 @@ function App() {
   var component
   switch (screen) {
     case "menu":
-      component = <Menu play={() => setScreen('mode')} settings={() => setScreen('settings')} lang={langs[lang]} />
+      component = <Menu play={() => setScreen('mode')} settings={() => setScreen('settings')} stats={() => setScreen('stats')} lang={langs[lang]} />
       break;
     case "mode":
       component = <Mode mode2={() => setScreen('mode2')} lang={langs[lang]} back={() => setScreen('menu')}/>
@@ -62,6 +71,11 @@ function App() {
       break;
     case "game":
       component = <Game numbers={game(mode,langs[lang])} again={() => setScreen('mode')} mode2={mode2} mode={mode} lang={langs[lang]} back={() => setScreen('mode2')}/>
+      console.log(mode2)
+      console.log(game(mode,langs[lang]))
+      break;
+    case "stats":
+      component = <Stats lang={langs[lang]} back={() => setScreen('menu')}/>
       console.log(mode2)
       console.log(game(mode,langs[lang]))
       break;

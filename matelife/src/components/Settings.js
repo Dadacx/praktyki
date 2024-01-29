@@ -15,10 +15,10 @@ export const Settings = (props) => {
   </div>*/}
       <div className="sound settings_item">
         <span>{props.lang.music}</span>
-        <label class="toggler-wrapper settings_shadow">
+        <label className="toggler-wrapper settings_shadow">
           <input type="checkbox" onClick={props.toggleSound}></input>
-          <div class="toggler-slider">
-            <div class="toggler-knob"></div>
+          <div className="toggler-slider">
+            <div className="toggler-knob"></div>
           </div>
         </label>
       </div>

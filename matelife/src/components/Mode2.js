@@ -24,5 +24,9 @@ export const ModeBox2 = (props) => {
 }
 export const mode_type2 = (text1, text2, przedział) => {
   mode2 = [text1, text2, przedział]
+  const stats = JSON.parse(localStorage.getItem('stats'))
+  stats.games_playes = stats.games_playes != null ? stats.games_playes + 1 : 1
+  console.log(stats)
+  localStorage.setItem('stats', JSON.stringify(stats))
 }
 export var mode2 = ["", ""]
