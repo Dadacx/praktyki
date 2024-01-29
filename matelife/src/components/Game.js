@@ -18,6 +18,7 @@ export const Game = (props) => {
   }
   if(cancel == null) {
     cancel = setInterval(incrementSeconds, 1000);
+    console.log("fdsvs")
   }
   function stats_correct_answer() {
     stats.correct_answers = stats.correct_answers != null ? stats.correct_answers + 1 : 1
@@ -40,19 +41,24 @@ export const Game = (props) => {
     }
       document.querySelector("#hint").style.visibility = "hidden"
     } else if(inputRef.current.value != "") {
+      if(hearts==1) {
+        stats.games_lost = stats.games_lost != null ? stats.games_lost + 1 : 1
+        console.log(stats)
+        localStorage.setItem('stats', JSON.stringify(stats))
+        clearInterval(cancel)
+        cancel = null
+        console.log(cancel)
+        document.querySelector("#lvl").style.display = "none"
+        document.querySelector("#gameover").style.display = "block"
+        document.querySelector("#game_content").style.display = "none"
+        document.querySelector("#again").style.display = "block"
+        document.querySelector("#hearts").style.display = "none"
+      } else {
       setHearts(hearts - 1)
       stats_incorrect_answer()
       //console.log(hearts)
       document.querySelector("#hint").innerHTML="Pokaż podpowiedź"
       document.querySelector("#hint").style.visibility = "visible"
-      if(hearts==1) {
-        stats.games_lost = stats.games_lost != null ? stats.games_lost + 1 : 1
-        console.log(stats)
-        localStorage.setItem('stats', JSON.stringify(stats))
-        document.querySelector("#lvl").style.display = "none"
-        document.querySelector("#gameover").style.display = "block"
-        document.querySelector("#game_content").style.display = "none"
-        document.querySelector("#try_again").style.display = "block"
       }
     }
   }
@@ -93,7 +99,7 @@ export const Game = (props) => {
     document.querySelector("#lvl").style.display = "block"
     document.querySelector("#gameover").style.display = "none"
     document.querySelector("#game_content").style.display = "flex"
-    document.querySelector("#try_again").style.display = "none"
+    document.querySelector("#again").style.display = "none"
     document.querySelector("#win").style.display = "none"
     document.querySelector("#hearts").style.display = "block"
     document.querySelector("#hint").style.visibility = "hidden"
@@ -104,7 +110,6 @@ export const Game = (props) => {
     clearInterval(cancel)
     cancel = null
     console.log(stats)
-    localStorage.setItem('stats', JSON.stringify(stats))
     stats.games_won = stats.games_won != null ? stats.games_won + 1 : 1
     console.log(stats)
     localStorage.setItem('stats', JSON.stringify(stats))
@@ -130,7 +135,10 @@ export const Game = (props) => {
       <div className="back shadow" style={{display:"none"}} onClick={props.back}>{props.lang.back}</div>
       <div className="selected_mode" style={{marginTop:"-120px"}} id='lvl'>{props.lang.level} {lvl}</div>
       <div className="selected_mode" id='gameover' style={{display:"none"}}>{props.lang.game_over}</div>
+      <div id='again' style={{display:"none"}}>
       <div className='btn try_again' id='try_again' onClick={again}>{props.lang.try_again}</div>
+      <div className='btn try_again' style={{marginTop: "25px"}} onClick={props.again}>{props.lang.select_mode}</div>
+      </div>
       <div id='win' className='win'>
         <div className='finished'>{props.lang.finished_lvl} {props.mode[0]} {props.lang.and} {props.mode[1]} {props.mode[2]}</div>
         <img className='minionki' src={minionki}></img>
