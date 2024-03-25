@@ -11,7 +11,7 @@ export const Game = (props) => {
   const [hearts, setHearts] = useState(3)
   const [score, setScore] = useState(0)
   const [tab_index, setIndex] = useState(1)
-  if(stats.time == null) stats.time = 0
+  stats.time = stats.time != null ? stats.time : stats.time = 0
   function incrementSeconds() {
     stats.time += 1
     console.log(stats.time)
